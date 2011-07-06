@@ -11,13 +11,13 @@
 
 // Map values
 $title = elgg_extract('title', $vars, '');
-$guid = elgg_extract('guid', $vars, NULL);
+$guid = elgg_extract('guid', $vars);
 $description = elgg_extract('description', $vars, '');
 
 // Check if we've got an entity, if so, we're editing.
 if ($guid) {
 	$entity_hidden  = elgg_view('input/hidden', array(
-		'name' => 'item_guid',
+		'name' => 'guid',
 		'value' => $guid,
 	));
 	// Grab item to include roles

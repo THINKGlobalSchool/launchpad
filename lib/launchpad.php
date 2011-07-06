@@ -42,7 +42,6 @@ function launchpad_get_edit_content($type, $guid = NULL) {
  * @return array
  */
 function launchpad_prepare_form_vars($launchpad_item = null) {
-
 	// input names => defaults
 	$values = array(
 		'title' => '',

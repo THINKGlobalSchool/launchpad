@@ -12,7 +12,7 @@
 // Get inputs
 $title = get_input('title');
 $description = get_input('description');
-$item_guid = get_input('item_guid', NULL);
+$item_guid = get_input('guid', NULL);
 
 $roles_list = get_input('roles_list');
 

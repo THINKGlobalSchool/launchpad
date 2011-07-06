@@ -14,11 +14,14 @@ $title = get_input('title');
 $description = get_input('description');
 $item_guid = get_input('item_guid', NULL);
 
+$roles_list = get_input('roles_list');
+
+
 // Create Sticky form
 elgg_make_sticky_form('launchpad-edit-form');
 
 // Check inputs
-if (!$title || !$description) {
+if (!$title || !$description || !$roles_lists) {
 	register_error(elgg_echo('launchpad:error:requiredfields'));
 	forward(REFERER);
 }

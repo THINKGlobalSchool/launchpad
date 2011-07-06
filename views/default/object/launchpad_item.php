@@ -19,7 +19,6 @@ if (!$launchpad_item) {
 $tags = elgg_view('output/tags', array('tags' => $launchpad_item->tags));
 $date = elgg_view_friendly_time($launchpad_item->time_created);
 
-
 $metadata = elgg_view_menu('entity', array(
 	'entity' => $launchpad_item,
 	'handler' => 'launchpad',
@@ -32,6 +31,8 @@ if (elgg_in_context('widgets')) {
 	$metadata = '';
 }
 
+$roles = elgg_view('output/roles', $vars);
+
 if ($full) {
 
 	$body = elgg_view('output/longtext', array(
@@ -43,6 +44,7 @@ if ($full) {
 	$params = array(
 		'entity' => $launchpad_item,
 		'title' => false,
+		'subtitle' => $roles,
 		'metadata' => $metadata,
 		'tags' => $tags,
 	);
@@ -62,6 +64,7 @@ HTML;
 
 	$params = array(
 		'entity' => $launchpad_item,
+		'subtitle' => $roles,
 		'metadata' => $metadata,
 		'tags' => $tags,
 		'content' => $excerpt,

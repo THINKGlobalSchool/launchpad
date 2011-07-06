@@ -11,15 +11,28 @@
 
 $english = array(
 	// Generic
+	'admin:launchpad' => 'Launchpad',
+	'admin:launchpad:items' => 'Items',
+	'admin:launchpad:add' => 'Add Launchpad Item',
+	'admin:launchpad:edit' => 'Edit Launchpad Item',
+	'item:object:launchpad_item' => 'Launchpad Items',
 
 	// Page titles 
 
 	// Labels
+	'launchpad:label:items' => 'Current Launchpad Items',
+	'launchpad:label:none' => 'No Items',
+	'launchpad:label:new' => 'Add New Item',
 
 	// River
 
 	// Messages
+	'launchpad:error:requiredfields' => 'One or more required fields are missing',
+	'launchpad:error:notfound' => 'Item not found',
 	'launchpad:error:delete' => 'There was an error deleting the launchpad item',
+	'launchpad:error:save' => 'There was an error saving the launchpad item',
+	'launchpad:error:edit' => 'There was an error editing the launchpad item',
+	'launchpad:success:save' => 'Successfully saved launchpad item',
 	'launchpad:success:delete' => 'Successfully deleted the launchpad item',
 
 	// Other content

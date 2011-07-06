@@ -20,6 +20,8 @@ if ($guid) {
 		'name' => 'item_guid',
 		'value' => $guid,
 	));
+	// Grab item to include roles
+	$item = get_entity($guid);
 }
 
 // Labels/Input
@@ -40,6 +42,8 @@ $submit_input = elgg_view('input/submit', array(
 	'value' => elgg_echo('save')
 ));
 
+$roles_input = elgg_view('input/roles', array('entity' => $item));
+
 // Build Form Body
 $form_body = <<<HTML
 
@@ -52,6 +56,9 @@ $form_body = <<<HTML
 		<label>$description_label</label><br />
         $description_input
 	</div><br />
+	<div>
+		$roles_input
+	</div>
 	<div class='elgg-foot'>
 		$submit_input
 		$entity_hidden

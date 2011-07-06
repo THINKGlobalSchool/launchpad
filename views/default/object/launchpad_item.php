@@ -34,7 +34,6 @@ if (elgg_in_context('widgets')) {
 $roles = elgg_view('output/roles', $vars);
 
 if ($full) {
-
 	$body = elgg_view('output/longtext', array(
 		'value' => $launchpad_item->description,
 	));
@@ -53,10 +52,16 @@ if ($full) {
 
 	$launchpad_item_info = elgg_view_image_block('', $list_body);
 
+	// Icon info
+	$icon_label = elgg_echo('launchpad:label:icon');
+	$icon = elgg_view('launchpad/icon', $vars);
+
 	echo <<<HTML
-$header
-$launchpad_item_info
-$body
+		$header
+		$launchpad_item_info
+		$body
+		<label>$icon_label</label><br />
+		$icon
 HTML;
 
 } else {

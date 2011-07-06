@@ -22,6 +22,10 @@ if ($guid) {
 	));
 	// Grab item to include roles
 	$item = get_entity($guid);
+
+	$icon_label = elgg_echo("launchpad:label:replaceicon");
+} else {
+	$icon_label = elgg_echo("launchpad:label:icon");
 }
 
 // Labels/Input
@@ -35,6 +39,10 @@ $description_label = elgg_echo("description");
 $description_input = elgg_view("input/longtext", array(
 	'name' => 'description',
 	'value' => $description
+));
+
+$icon_input = elgg_view('input/file', array(
+	'name' => 'upload'
 ));
 
 $submit_input = elgg_view('input/submit', array(
@@ -55,6 +63,10 @@ $form_body = <<<HTML
 	<div>
 		<label>$description_label</label><br />
         $description_input
+	</div><br />
+	<div>
+		<label>$icon_label</label>
+		$icon_input
 	</div><br />
 	<div>
 		$roles_input

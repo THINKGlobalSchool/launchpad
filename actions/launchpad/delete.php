@@ -15,7 +15,11 @@ $guid = get_input('guid');
 $launchpad_item = get_entity($guid);
 
 if ($launchpad_item && $launchpad_item->getSubtype() == 'launchpad_item') {
-	if ($launchpad_item->delete()) {
+	// Get icon
+	$icon = get_entity($launchpad_item->icon_guid);
+
+	// Delete item and icon
+	if ($launchpad_item->delete() && $icon->delete()) {
 		// Success
 		system_message(elgg_echo('launchpad:success:delete'));
 		forward('admin/launchpad/items');

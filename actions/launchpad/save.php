@@ -21,7 +21,7 @@ $roles_list = get_input('roles_list');
 elgg_make_sticky_form('launchpad-edit-form');
 
 // Check inputs
-if (!$title || !$description || !$roles_lists) {
+if (!$title || !$description || !$roles_list) {
 	register_error(elgg_echo('launchpad:error:requiredfields'));
 	forward(REFERER);
 }

@@ -12,7 +12,7 @@
 
 elgg_register_event_handler('init', 'system', 'launchpad_init');
 
-function roles_init() {
+function launchpad_init() {
 
 	// Register and load library
 	elgg_register_library('launchpad', elgg_get_plugins_path() . 'launchpad/lib/launchpad.php');
@@ -26,15 +26,14 @@ function roles_init() {
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
 	elgg_register_js('elgg.launchpad', $l_js);
 
-	// Just for testin, put somewhere else
-	elgg_load_css('elgg.launchpad');
-	elgg_load_js('elgg.launchpad');	
-
 	// Add submenus
 	elgg_register_event_handler('pagesetup', 'system', 'launchpad_submenus');
 
 	// Register URL handler
 	elgg_register_entity_url_handler('object', 'launchpad_item', 'launchpad_url');
+
+	// Item entity menu hook
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'launchpad_setup_entity_menu', 999);
 
 	// Register actions
 	$action_base = elgg_get_plugins_path() . 'launchpad/actions/launchpad';
@@ -47,11 +46,11 @@ function roles_init() {
 /**
  * Populates the ->getUrl() method for launchpad_item entities
  *
- * @param ElggRole entity
+ * @param ElggObject entity
  * @return string request url
  */
 function launchpad_url($entity) {
-	return elgg_get_site_url() . 'admin/users/viewrole?guid=' . $entity->guid;
+	return elgg_get_site_url() . 'admin/launchpad/item?guid=' . $entity->guid;
 }
 
 /**
@@ -59,6 +58,40 @@ function launchpad_url($entity) {
  */
 function launchpad_submenus() {
 	if (elgg_in_context('admin')) {
-		elgg_register_admin_menu_item('administer', 'roles', 'users');
+		elgg_register_admin_menu_item('administer', 'items', 'launchpad');
 	}
+}
+
+/**
+ * Item entity plugin hook
+ */
+function launchpad_setup_entity_menu($hook, $type, $return, $params) {
+	$entity = $params['entity'];
+
+	if (!elgg_instanceof($entity, 'object', 'launchpad_item')) {
+		return $return;
+	}
+
+	$return = array();
+
+	$options = array(
+		'name' => 'edit',
+		'text' => elgg_echo('edit'),
+		'href' => elgg_get_site_url() . 'admin/launchpad/edit?guid=' . $entity->guid,
+		'priority' => 2,
+	);
+	$return[] = ElggMenuItem::factory($options);
+
+	$options = array(
+		'name' => 'delete',
+		'text' => elgg_view_icon('delete'),
+		'title' => elgg_echo('delete:this'),
+		'href' => "action/{$params['handler']}/delete?guid={$entity->getGUID()}",
+		'confirm' => elgg_echo('deleteconfirm'),
+		'priority' => 3,
+	);
+
+	$return[] = ElggMenuItem::factory($options);
+
+	return $return;
 }

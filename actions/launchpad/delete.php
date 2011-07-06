@@ -18,10 +18,10 @@ if ($launchpad_item && $launchpad_item->getSubtype() == 'launchpad_item') {
 	if ($launchpad_item->delete()) {
 		// Success
 		system_message(elgg_echo('launchpad:success:delete'));
-		forward('');
+		forward('admin/launchpad/items');
 	} else {
 		// Error
 		register_error(elgg_echo('launchpad:error:delete'));
-		forward('');
+		forward('admin/launchpad/items');
 	}
 }

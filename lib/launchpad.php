@@ -26,11 +26,18 @@ function launchpad_get_edit_content($type, $guid = NULL) {
 		$launchpad_item = null;
 	}
 
-	$form_vars = launchpad_prepare_form_vars($launchpad_item);
+	$body_vars = launchpad_prepare_form_vars($launchpad_item);
 
 	$content = elgg_view('navigation/breadcrumbs');
 
-	$content .= elgg_view_form('launchpad/save', array('name' => 'launchpad-edit-form', 'id' => 'launchpad-edit-form'), $form_vars);
+	// Need enctype for uploading
+	$form_vars = array(
+		'name' => 'launchpad-edit-form',
+		'id' => 'launchpad-edit-form',
+		'enctype' => 'multipart/form-data',
+	);
+
+	$content .= elgg_view_form('launchpad/save', $form_vars, $body_vars);
 
 	echo $content;
 }

@@ -18,6 +18,9 @@ function launchpad_init() {
 	elgg_register_library('launchpad', elgg_get_plugins_path() . 'launchpad/lib/launchpad.php');
 	elgg_load_library('launchpad');
 
+	// Register class
+	elgg_register_class('LaunchpadItemIcon', elgg_get_plugins_path() . 'launchpad/lib/classes/LaunchpadItemIcon.php');
+
 	// Register CSS
 	$l_css = elgg_get_simplecache_url('css', 'launchpad/css');
 	elgg_register_css('elgg.launchpad', $l_css);
@@ -25,6 +28,9 @@ function launchpad_init() {
 	// Register JS library
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
 	elgg_register_js('elgg.launchpad', $l_js);
+
+	// Register page handler
+	elgg_register_page_handler('launchpad','launchpad_page_handler');
 
 	// Add submenus
 	elgg_register_event_handler('pagesetup', 'system', 'launchpad_submenus');
@@ -40,7 +46,47 @@ function launchpad_init() {
 	elgg_register_action('launchpad/save', "$action_base/save.php", 'admin');
 	elgg_register_action('launchpad/delete', "$action_base/delete.php", 'admin');
 
-	return true;
+	// Register one once for subtype
+	run_function_once("launchpad_run_once");
+
+	return TRUE;
+}
+
+/**
+ * Launchpad page handler
+ */
+function launchpad_page_handler($page) {
+
+	switch($page[0]) {
+		case 'thumbnail':
+			// Make sure we have a proper guid
+			$icon = get_entity($page[1]);
+
+			if (elgg_instanceof($icon, 'object', 'launchpad_item_icon')) {
+				// Create a new read file
+				$readfile = new ElggFile();
+				$readfile->owner_guid = $icon->owner_guid;
+				$readfile->setFilename($icon->getFilename());
+				$mime = $icon->getMimeType();
+				$contents = $readfile->grabFile();
+
+				// caching images for 10 days
+				header("Content-type: $mime");
+				header('Expires: ' . date('r',time() + 864000));
+				header("Pragma: public", true);
+				header("Cache-Control: public", true);
+				header("Content-Length: " . strlen($contents));
+
+				echo $contents;
+				exit;
+			}
+			break;
+		default:
+			forward();
+			break;
+	}
+
+	return TRUE;
 }
 
 /**
@@ -94,4 +140,15 @@ function launchpad_setup_entity_menu($hook, $type, $return, $params) {
 	$return[] = ElggMenuItem::factory($options);
 
 	return $return;
+}
+
+/**
+ * Register entity type objects, subtype launchpad_item_icon as
+ * LaunchpadItemIcon
+ *
+ * @return void
+ */
+function launchpad_run_once() {
+	// Register a class
+	add_subtype("object", "launchpad_item_icon", "LaunchpadItemIcon");
 }

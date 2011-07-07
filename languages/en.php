@@ -30,6 +30,9 @@ $english = array(
 	'launchpad:label:icon' => 'Item Icon',
 	'launchpad:label:url' => 'Item URL',
 
+	// Widget
+	'launchpad:widget:description' => 'Display a role based launchpad',
+
 	// River
 
 	// Messages

@@ -10,6 +10,7 @@
  *
  */
 
+elgg_load_css('elgg.launchpad');
 $item = elgg_extract('item', $vars);
 
 $icon = elgg_view('launchpad/icon', array(

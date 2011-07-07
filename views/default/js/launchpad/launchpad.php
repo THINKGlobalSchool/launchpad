@@ -14,9 +14,8 @@
 elgg.provide('elgg.launchpad');
 
 // Init function
-elgg.launchpad.init = function() {
-	console.log('launchpad loaded');
+elgg.launchpad.init = function() {	
 }
 
-elgg.register_hook_handler('init', 'system', elgg.launchpad.init);
+//elgg.register_hook_handler('init', 'system', elgg.launchpad.init);
 //</script>

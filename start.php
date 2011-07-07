@@ -25,7 +25,7 @@ function launchpad_init() {
 	$l_css = elgg_get_simplecache_url('css', 'launchpad/css');
 	elgg_register_css('elgg.launchpad', $l_css);
 
-	// Register JS library
+	// Register JS libraries
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
 	elgg_register_js('elgg.launchpad', $l_js);
 

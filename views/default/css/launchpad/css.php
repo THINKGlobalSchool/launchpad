@@ -19,16 +19,13 @@ li.elgg-item:hover {
 	background: #eee;
 }
 
-.launchpad-module {
-	width: 325px;
-}
-
 .launchpad-module .elgg-body {
 	padding: 2px;
 }
 
 .launchpad-items {
 	height: 100%;
+	width: 100%;
 	padding-top: 10px;
 	padding-left: 10px;
 	padding-right: 10px;

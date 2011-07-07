@@ -12,7 +12,9 @@
 // Get inputs
 $title = get_input('title');
 $description = get_input('description');
+$item_url = get_input('item_url');
 $item_guid = get_input('guid', NULL);
+
 
 $roles_list = get_input('roles_list');
 
@@ -20,7 +22,7 @@ $roles_list = get_input('roles_list');
 elgg_make_sticky_form('launchpad-edit-form');
 
 // Check inputs
-if (!$title || !$description || !$roles_list) {
+if (!$title || !$item_url || !$roles_list) {
 	register_error(elgg_echo('launchpad:error:requiredfields'));
 	forward(REFERER);
 }
@@ -57,6 +59,7 @@ if (!$item_guid) {
 
 $launchpad_item->title = $title;
 $launchpad_item->description = $description;
+$launchpad_item->item_url = $item_url;
 
 // we have an icon upload, so process it
 if (isset($_FILES['upload']['name']) && !empty($_FILES['upload']['name'])) {

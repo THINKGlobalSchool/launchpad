@@ -13,6 +13,8 @@
 $title = elgg_extract('title', $vars, '');
 $guid = elgg_extract('guid', $vars);
 $description = elgg_extract('description', $vars, '');
+$url = elgg_extract('item_url', $vars, '');
+
 
 // Check if we've got an entity, if so, we're editing.
 if ($guid) {
@@ -35,10 +37,16 @@ $title_input = elgg_view('input/text', array(
 	'value' => $title
 ));
 
-$description_label = elgg_echo("description");
-$description_input = elgg_view("input/longtext", array(
+$description_label = elgg_echo('description');
+$description_input = elgg_view('input/longtext', array(
 	'name' => 'description',
 	'value' => $description
+));
+
+$url_label = elgg_echo('launchpad:label:url');
+$url_input = elgg_view('input/url', array(
+	'name' => 'item_url',
+	'value' => $url,
 ));
 
 $icon_input = elgg_view('input/file', array(
@@ -63,6 +71,10 @@ $form_body = <<<HTML
 	<div>
 		<label>$description_label</label><br />
         $description_input
+	</div><br />
+	<div>
+		<label>$url_label</label><br />
+		$url_input
 	</div><br />
 	<div>
 		<label>$icon_label</label>

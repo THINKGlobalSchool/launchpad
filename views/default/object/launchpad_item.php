@@ -33,6 +33,10 @@ if (elgg_in_context('widgets')) {
 
 $roles = elgg_view('output/roles', $vars);
 
+$url = elgg_view('output/url', array(
+	'value' => $launchpad_item->item_url,
+));
+
 if ($full) {
 	$body = elgg_view('output/longtext', array(
 		'value' => $launchpad_item->description,
@@ -54,22 +58,32 @@ if ($full) {
 
 	// Icon info
 	$icon_label = elgg_echo('launchpad:label:icon');
-	$icon = elgg_view('launchpad/icon', $vars);
+	$icon = elgg_view('launchpad/icon', array(
+		'entity' => $launchpad_item,
+		'height' => 80,
+		'width' => 80,
+	));
+
+	// URL Label
+	$url_label = elgg_echo('launchpad:label:url');
 
 	echo <<<HTML
 		$header
 		$launchpad_item_info
 		$body
+		<label>$url_label</label><br />
+		<p>$url</p>
 		<label>$icon_label</label><br />
 		$icon
 HTML;
 
 } else {
 	// brief view
+	$subtitle = $url . "<br />" . $roles;
 
 	$params = array(
 		'entity' => $launchpad_item,
-		'subtitle' => $roles,
+		'subtitle' => $subtitle,
 		'metadata' => $metadata,
 		'tags' => $tags,
 		'content' => $excerpt,
@@ -77,5 +91,11 @@ HTML;
 	$params = $params + $vars;
 	$list_body = elgg_view('object/elements/summary', $params);
 
-	echo elgg_view_image_block('', $list_body);
+	$icon = elgg_view('launchpad/icon', array(
+		'entity' => $launchpad_item,
+		'height' => 40,
+		'width' => 40,
+	));
+
+	echo elgg_view_image_block($icon, $list_body);
 }

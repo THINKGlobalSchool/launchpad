@@ -28,6 +28,7 @@ $english = array(
 	'launchpad:label:icon' => 'Item Icon',
 	'launchpad:label:replaceicon' => 'Replace Icon (Not required)',
 	'launchpad:label:icon' => 'Item Icon',
+	'launchpad:label:url' => 'Item URL',
 
 	// River
 

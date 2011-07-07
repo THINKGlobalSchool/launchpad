@@ -53,6 +53,7 @@ function launchpad_prepare_form_vars($launchpad_item = null) {
 	$values = array(
 		'title' => '',
 		'description' => '',
+		'item_url' => '',
 		'guid' => NULL,
 	);
 

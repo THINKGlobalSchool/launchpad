@@ -27,8 +27,8 @@ li.elgg-item:hover {
 	height: 100%;
 	width: 100%;
 	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
 	padding-bottom: 7px;
 	text-align: center;
 	display: table;
@@ -46,7 +46,7 @@ li.elgg-item:hover {
 
 .launchpad-item {
 	background: #bbb;
-	border: 1px solid #bbb;
+	border: 2px solid #bbb;
 	padding: 3px;
 	margin: 2px;
 	display: inline-block;
@@ -59,4 +59,9 @@ li.elgg-item:hover {
 
 .launchpad-item:hover {
 	background: #fff;
+}
+
+/* Don't show BG in widget */
+.elgg-widget-content .launchpad-items {
+	background: none;
 }

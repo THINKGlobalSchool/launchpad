@@ -1,6 +1,6 @@
 <?php
 // THIS IS FOR TESTING!!!!! 
-
+admin_gatekeeper();
 $full = elgg_extract('full_view', $vars, FALSE);
 $icon = elgg_extract('entity', $vars, FALSE);
 

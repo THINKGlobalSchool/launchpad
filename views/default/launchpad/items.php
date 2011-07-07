@@ -10,6 +10,7 @@
  *
  */
 
+elgg_load_css('elgg.launchpad');
 elgg_load_js('elgg.launchpad');
 
 $limit = elgg_extract('limit', $vars, 10);

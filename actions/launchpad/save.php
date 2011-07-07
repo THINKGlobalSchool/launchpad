@@ -81,6 +81,7 @@ if (isset($_FILES['upload']['name']) && !empty($_FILES['upload']['name'])) {
 	$icon->originalfilename = $_FILES['upload']['name'];
 	$icon->title =  $_FILES['upload']['name'];
 	$icon->simpletype = file_get_simple_type($_FILES['upload']['type']);
+	$icon->access_id = ACCESS_LOGGED_IN; // @TODO .. what should this be
 
 	// Open the file to guarantee the directory exists
 	$icon->open("write");

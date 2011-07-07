@@ -16,4 +16,4 @@ $width = elgg_extract('width', $vars);
 
 $icon = get_entity($launchpad_item->icon_guid);
 
-echo "<img style='max-height:{$height}px;max-width:{$width}px;' alt='{$icon->title}' src='" . elgg_get_site_url() . "launchpad/thumbnail/{$icon->guid}' />";
+echo "<img class='launchpad-item-icon' style='height:{$height}px;width:{$width}px;' alt='{$icon->title}' src='" . elgg_get_site_url() . "launchpad/thumbnail/{$icon->guid}' />";

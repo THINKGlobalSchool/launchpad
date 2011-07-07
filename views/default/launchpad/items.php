@@ -1,6 +1,6 @@
 <?php
 /**
- * TGS Launchpad Module
+ * TGS Launchpad Items
  *
  * @package TGSLaunchpad
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
@@ -10,7 +10,10 @@
  *
  */
 
-elgg_load_css('elgg.launchpad');
+elgg_load_js('elgg.launchpad');
+
+$limit = elgg_extract('limit', $vars, 10);
+$offset = elgg_extract('offset', $vars, 0);
 
 // Get our user's roles
 $roles = get_user_roles(elgg_get_logged_in_user_entity(), 0);
@@ -22,20 +25,19 @@ foreach($roles as $role) {
 	$role_guids[] = $role->guid;
 }
 
-$content = elgg_list_entities_from_metadata(array(
+$items = elgg_get_entities_from_metadata(array(
 	'type' => 'object',
 	'subtype' => 'launchpad_item',
-	'limit' => 0,
-	'pagination' => TRUE,
-	'full_view' => FALSE,
+	'limit' => $limit,
+	'offset' => $offset,
 	'metadata_names' => 'roles',
 	'metadata_values' => $role_guids,
 ));
 
-//echo elgg_view_module('featured', elgg_echo('launchpad'), $content);
+echo "<div class='launchpad-items'>";
 
-$content = elgg_view('launchpad/items');
+foreach($items as $item) {
+	echo elgg_view('launchpad/item', array('item' => $item));
+}
 
-echo elgg_view_module('featured', elgg_echo('launchpad'), $content, array(
-	'class' => 'launchpad-module',
-));
+echo "<div style='clear: both;'></div></div>";

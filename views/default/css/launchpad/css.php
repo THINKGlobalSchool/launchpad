@@ -45,7 +45,6 @@ li.elgg-item:hover {
 }
 
 .launchpad-item {
-	background: #bbb;
 	border: 2px solid #bbb;
 	padding: 3px;
 	margin: 2px;
@@ -57,8 +56,10 @@ li.elgg-item:hover {
 	border-radius: 2px;
 }
 
-.launchpad-item:hover {
-	background: #fff;
+.launchpad-item-hover {
+	-moz-box-shadow: 0 1px 24px #000;
+	-webkit-box-shadow: 0 1px 24px #000;
+	box-shadow: 0 1px 24px #000;
 }
 
 /* Don't show BG in widget */

@@ -15,7 +15,12 @@ elgg.provide('elgg.launchpad');
 
 // Init function
 elgg.launchpad.init = function() {	
+	console.log('hi');
+	// Show/Hide hover menu
+	$('.launchpad-item').hover(function() {
+			$(this).toggleClass('launchpad-item-hover');
+	});
 }
 
-//elgg.register_hook_handler('init', 'system', elgg.launchpad.init);
+elgg.register_hook_handler('init', 'system', elgg.launchpad.init);
 //</script>

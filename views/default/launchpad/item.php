@@ -15,8 +15,8 @@ $item = elgg_extract('item', $vars);
 
 $icon = elgg_view('launchpad/icon', array(
 	'entity' => $item,
-	'height' => 80,
-	'width' => 80,
+	'height' => 60,
+	'width' => 60,
 ));
 
 $link = elgg_view('output/url', array(

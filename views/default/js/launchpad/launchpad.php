@@ -20,8 +20,7 @@ elgg.launchpad.init = function() {
 		defaultPosition : 'top',
 		fadeIn          : 25,
 		fadeOut         : 300,
-		edgeOffset      : -5,
-		keepAlive       : true,
+		edgeOffset      : -5
 	});
 
 	$('.launchpad-item').hover(function() {

@@ -11,6 +11,8 @@
 
 elgg_load_css('elgg.launchpad');
 elgg_load_js('elgg.launchpad');
+elgg_load_js('jquery.tiptip');
+elgg_load_css('jquery.tiptip');
 
 $options = array(
 	'type' => 'object',

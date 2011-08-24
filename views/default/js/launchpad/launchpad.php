@@ -14,11 +14,18 @@
 elgg.provide('elgg.launchpad');
 
 // Init function
-elgg.launchpad.init = function() {	
-	console.log('hi');
-	// Show/Hide hover menu
+elgg.launchpad.init = function() {
+	$('.launchpad-tooltip').tipTip({
+		delay           : 0,
+		defaultPosition : 'top',
+		fadeIn          : 25,
+		fadeOut         : 300,
+		edgeOffset      : -5,
+		keepAlive       : true,
+	});
+
 	$('.launchpad-item').hover(function() {
-			$(this).toggleClass('launchpad-item-hover');
+		$(this).toggleClass('launchpad-item-hover');
 	});
 }
 

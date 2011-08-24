@@ -22,11 +22,12 @@ $icon = elgg_view('launchpad/icon', array(
 $link = elgg_view('output/url', array(
 	'href' => $item->item_url,
 	'text' => $icon,
+	'title' => $item->title,
 ));
 
 
 echo <<<HTML
-	<span class='launchpad-item'>
+	<span class='launchpad-item launchpad-tooltip' title='{$item->title}'>
 		$link
 	</span>
 HTML;

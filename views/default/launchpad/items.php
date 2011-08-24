@@ -12,6 +12,8 @@
 
 elgg_load_css('elgg.launchpad');
 elgg_load_js('elgg.launchpad');
+elgg_load_js('jquery.tiptip');
+elgg_load_css('jquery.tiptip');
 
 $limit = elgg_extract('limit', $vars, 10);
 $offset = elgg_extract('offset', $vars, 0);

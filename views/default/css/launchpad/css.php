@@ -49,8 +49,8 @@ li.elgg-item:hover {
 	padding: 3px;
 	margin: 2px;
 	display: inline-block;
-	height: 80px;
-	width: 80px;
+	height: 60px;
+	width: 60px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;

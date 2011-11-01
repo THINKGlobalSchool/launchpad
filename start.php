@@ -27,18 +27,22 @@ function launchpad_init() {
 
 	// Register CSS
 	$l_css = elgg_get_simplecache_url('css', 'launchpad/css');
+	elgg_register_simplecache_view('css/launchpad/css');
 	elgg_register_css('elgg.launchpad', $l_css);
 
 	// Register CSS for tiptip
 	$t_css = elgg_get_simplecache_url('css', 'tiptip');
+	elgg_register_simplecache_view('css/tiptip');
 	elgg_register_css('jquery.tiptip', $t_css);
 
 	// Register JS libraries
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
+	elgg_register_simplecache_view('js/launchpad/launchpad');
 	elgg_register_js('elgg.launchpad', $l_js);
 
 	// Register JS for tiptip
 	$t_js = elgg_get_simplecache_url('js', 'tiptip');
+	elgg_register_simplecache_view('js/tiptip');
 	elgg_register_js('jquery.tiptip', $t_js);
 
 	// Register page handler

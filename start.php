@@ -38,12 +38,12 @@ function launchpad_init() {
 	// Register JS libraries
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
 	elgg_register_simplecache_view('js/launchpad/launchpad');
-	elgg_register_js('elgg.launchpad', $l_js);
+	elgg_register_js('elgg.launchpad', $l_js, 'head', 502);
 
 	// Register JS for tiptip
 	$t_js = elgg_get_simplecache_url('js', 'tiptip');
 	elgg_register_simplecache_view('js/tiptip');
-	elgg_register_js('jquery.tiptip', $t_js);
+	elgg_register_js('jquery.tiptip', $t_js, 'head', 1);
 
 	// Register page handler
 	elgg_register_page_handler('launchpad','launchpad_page_handler');

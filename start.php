@@ -43,7 +43,7 @@ function launchpad_init() {
 	// Register JS for tiptip
 	$t_js = elgg_get_simplecache_url('js', 'tiptip');
 	elgg_register_simplecache_view('js/tiptip');
-	elgg_register_js('jquery.tiptip', $t_js, 'head', 1);
+	elgg_register_js('jquery.tiptip', $t_js, 'head', 501);
 
 	// Register page handler
 	elgg_register_page_handler('launchpad','launchpad_page_handler');

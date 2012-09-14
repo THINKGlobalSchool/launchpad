@@ -58,7 +58,7 @@ $submit_input = elgg_view('input/submit', array(
 	'value' => elgg_echo('save')
 ));
 
-$roles_input = elgg_view('input/roles', array('entity' => $item));
+$roles_input = elgg_view('input/roles', array('value' => $item->roles));
 
 // Build Form Body
 $form_body = <<<HTML

@@ -65,6 +65,8 @@ function launchpad_init() {
 	elgg_register_action('launchpad/save', "$action_base/save.php", 'admin');
 	elgg_register_action('launchpad/delete', "$action_base/delete.php", 'admin');
 
+	elgg_register_ajax_view('launchpad/items');
+
 	// Register one once for subtype
 	run_function_once("launchpad_run_once");
 

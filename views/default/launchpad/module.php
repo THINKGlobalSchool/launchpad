@@ -11,30 +11,14 @@
  */
 
 elgg_load_css('elgg.launchpad');
+elgg_load_js('elgg.launchpad');
+elgg_load_js('jquery.tiptip');
+elgg_load_css('jquery.tiptip');
 
-// Get our user's roles
-$roles = get_user_roles(elgg_get_logged_in_user_entity(), 0);
-
-$role_guids = array();
-
-// Get role guids for elgg_list_entities..
-foreach($roles as $role) {
-	$role_guids[] = $role->guid;
-}
-
-$content = elgg_list_entities_from_metadata(array(
-	'type' => 'object',
-	'subtype' => 'launchpad_item',
-	'limit' => 0,
-	'pagination' => TRUE,
-	'full_view' => FALSE,
-	'metadata_names' => 'roles',
-	'metadata_values' => $role_guids,
+$content .= elgg_view('modules/genericmodule', array(
+	'view' => 'launchpad/items',
+	'view_vars' => array(), 
 ));
-
-//echo elgg_view_module('featured', elgg_echo('launchpad'), $content);
-
-$content = elgg_view('launchpad/items');
 
 echo elgg_view_module('featured', elgg_echo('launchpad'), $content, array(
 	'class' => 'launchpad-module',

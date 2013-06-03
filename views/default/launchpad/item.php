@@ -15,8 +15,8 @@ $item = elgg_extract('item', $vars);
 
 $icon = elgg_view('launchpad/icon', array(
 	'entity' => $item,
-	'height' => 60,
-	'width' => 60,
+	'height' => 25,
+	'width' => 25,
 ));
 
 $link = elgg_view('output/url', array(
@@ -27,7 +27,7 @@ $link = elgg_view('output/url', array(
 
 
 echo <<<HTML
-	<span class='launchpad-item launchpad-tooltip' title='{$item->title}'>
+	<span class='launchpad-item' title='{$item->title}'>
 		$link
 	</span>
 HTML;

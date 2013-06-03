@@ -43,14 +43,4 @@ foreach($items as $item) {
 	echo elgg_view('launchpad/item', array('item' => $item));
 }
 
-echo "<div style='clear: both;'></div></div>";
-$js = <<<JAVASCRIPT
-	<script type='text/javascript'>
-		var launchpad_init = function() {
-			elgg.launchpad.init();
-		}
-		elgg.register_hook_handler('ready', 'system', launchpad_init);
-	</script>
-JAVASCRIPT;
-
-echo $js;
+echo "</div>";

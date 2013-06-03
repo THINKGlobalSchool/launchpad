@@ -25,44 +25,37 @@ li.elgg-item:hover {
 
 .launchpad-items {
 	height: 100%;
-	width: 100%;
-	padding-top: 10px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-bottom: 7px;
-	text-align: center;
-	display: table;
-
-	/* http://www.colorzilla.com/gradient-editor/ */
-	background: rgb(255,255,255); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 50%, rgba(225,225,225,1) 51%, rgba(246,246,246,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(51%,rgba(225,225,225,1)), color-stop(100%,rgba(246,246,246,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* IE10+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
-	background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%); /* W3C */
+	padding: 6px 0 7px;
+	column-count: 2;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-gap: 2px;
+	-moz-column-gap: 2px; /* Firefox */
+	-webkit-column-gap: 2px; /* Safari and Chrome */
+	background: #FFF;
 }
 
 .launchpad-item {
-	border: 2px solid #bbb;
-	padding: 3px;
 	margin: 2px;
-	display: inline-block;
-	height: 60px;
-	width: 60px;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
+	display: block;
 }
 
-.launchpad-item-hover {
-	-moz-box-shadow: 0 1px 24px #000;
-	-webkit-box-shadow: 0 1px 24px #000;
-	box-shadow: 0 1px 24px #000;
+img.launchpad-item-icon {
+	border: 1px solid #bbb;
+	padding: 2px;
+	vertical-align: middle;
+	margin-right: 5px;
 }
 
-/* Don't show BG in widget */
-.elgg-widget-content .launchpad-items {
-	background: none;
+.launchpad-item a {
+	font-weight: bold;
+	font-size: 1.0em;
+}
+
+.launchpad-item:hover {
+	background: #EEE;
+}
+
+.launchpad-item:hover a {
+	text-decoration: underline;
 }

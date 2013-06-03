@@ -15,16 +15,21 @@ elgg.provide('elgg.launchpad');
 
 // Init function
 elgg.launchpad.init = function() {
-	$('.launchpad-tooltip').tipTip({
-		delay           : 0,
-		defaultPosition : 'top',
-		fadeIn          : 25,
-		fadeOut         : 300,
-		edgeOffset      : -5
-	});
+	// $('.launchpad-tooltip').tipTip({
+	// 	delay           : 0,
+	// 	defaultPosition : 'top',
+	// 	fadeIn          : 25,
+	// 	fadeOut         : 300,
+	// 	edgeOffset      : -5
+	// });
 
-	$('.launchpad-item').hover(function() {
-		$(this).toggleClass('launchpad-item-hover');
+	// $('.launchpad-item').hover(function() {
+	// 	$(this).toggleClass('launchpad-item-hover');
+	// });
+	
+	$(document).delegate('.launchpad-item', 'click', function(event) {
+		$(this).find('a').trigger('click');
+		event.preventDefault();
 	});
 }
 

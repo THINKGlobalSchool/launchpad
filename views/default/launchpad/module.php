@@ -20,6 +20,6 @@ $content .= elgg_view('modules/genericmodule', array(
 	'view_vars' => array(), 
 ));
 
-echo elgg_view_module('featured', elgg_echo('launchpad'), $content, array(
+echo elgg_view_module('featured', elgg_echo('launchpad:label:externallinks'), $content, array(
 	'class' => 'launchpad-module',
 ));

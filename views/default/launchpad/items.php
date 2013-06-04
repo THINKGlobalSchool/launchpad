@@ -28,6 +28,8 @@ foreach($roles as $role) {
 	$role_guids[] = $role->guid;
 }
 
+$dbprefix = elgg_get_config('dbprefix');
+
 $items = elgg_get_entities_from_metadata(array(
 	'type' => 'object',
 	'subtype' => 'launchpad_item',
@@ -35,6 +37,11 @@ $items = elgg_get_entities_from_metadata(array(
 	'offset' => $offset,
 	'metadata_names' => 'roles',
 	'metadata_values' => $role_guids,
+	'joins' => array(
+		"JOIN {$dbprefix}objects_entity oe ON e.guid = oe.guid"
+	),
+	'order_by' => 'oe.title',
+	'limit' => 0,
 ));
 
 echo "<div class='launchpad-items'>";

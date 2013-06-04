@@ -29,6 +29,7 @@ $english = array(
 	'launchpad:label:replaceicon' => 'Replace Icon (Not required)',
 	'launchpad:label:icon' => 'Item Icon',
 	'launchpad:label:url' => 'Item URL',
+	'launchpad:label:externallinks' => 'External Links',
 
 	// Widget
 	'launchpad:widget:description' => 'Display a role based launchpad',

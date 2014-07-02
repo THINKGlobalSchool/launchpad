@@ -21,10 +21,6 @@ function launchpad_init() {
 	// Register class
 	elgg_register_class('LaunchpadItemIcon', elgg_get_plugins_path() . 'launchpad/lib/classes/LaunchpadItemIcon.php');
 
-	// Register simplecache views for tipTip
-	elgg_register_simplecache_view('js/tiptip');
-	elgg_register_simplecache_view('css/tiptip');
-
 	// Register CSS
 	$l_css = elgg_get_simplecache_url('css', 'launchpad/css');
 	elgg_register_simplecache_view('css/launchpad/css');

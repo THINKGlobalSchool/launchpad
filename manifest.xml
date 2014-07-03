@@ -22,6 +22,12 @@
 	</requires>
 	<requires>
 		<type>plugin</type>
+		<name>tgstheme</name>
+		<version>1.9</version>
+		<comparison>ge</comparison>
+	</requires>
+	<requires>
+		<type>plugin</type>
 		<name>modules</name>
 		<version>1.9</version>
 		<comparison>ge</comparison>

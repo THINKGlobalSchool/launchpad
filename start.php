@@ -5,7 +5,7 @@
  * @package TGSLaunchpad
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.com/
  * 
  */
@@ -25,17 +25,9 @@ function launchpad_init() {
 	$l_css = elgg_get_simplecache_url('css', 'launchpad/css');
 	elgg_register_css('elgg.launchpad', $l_css);
 
-	// // Register CSS for tiptip
-	// $t_css = elgg_get_simplecache_url('css', 'tiptip');
-	// elgg_register_css('jquery.tiptip', $t_css);
-
 	// Register JS libraries
 	$l_js = elgg_get_simplecache_url('js', 'launchpad/launchpad');
 	elgg_register_js('elgg.launchpad', $l_js, 'head', 502);
-
-	// // Register JS for tiptip
-	// $t_js = elgg_get_simplecache_url('js', 'tiptip');
-	// elgg_register_js('jquery.tiptip', $t_js, 'head', 501);
 
 	// Register page handler
 	elgg_register_page_handler('launchpad','launchpad_page_handler');

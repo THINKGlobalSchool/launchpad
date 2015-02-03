@@ -5,7 +5,7 @@
  * @package TGSLaunchpad
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.com/
  * 
  */
@@ -36,7 +36,7 @@ function launchpad_init() {
 	elgg_register_event_handler('pagesetup', 'system', 'launchpad_submenus');
 
 	// Register URL handler
-	elgg_register_entity_url_handler('object', 'launchpad_item', 'launchpad_url');
+	elgg_register_plugin_hook_handler('entity:url', 'object', 'launchpad_url');
 
 	// Item entity menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'launchpad_setup_entity_menu', 999);
@@ -95,13 +95,23 @@ function launchpad_page_handler($page) {
 }
 
 /**
- * Populates the ->getUrl() method for launchpad_item entities
+ * Returns the URL from a launchpad entity
  *
- * @param ElggObject entity
- * @return string request url
+ * @param string $hook   'entity:url'
+ * @param string $type   'object'
+ * @param string $url    The current URL
+ * @param array  $params Hook parameters
+ * @return string
  */
-function launchpad_url($entity) {
-	return elgg_get_site_url() . 'admin/launchpad/item?guid=' . $entity->guid;
+function launchpad_url($hook, $type, $url, $params) {
+	$entity = $params['entity'];
+
+	// Check that the entity is a launchpad item object
+	if (!elgg_instanceof($entity, 'object', 'launchpad_item')) {
+		return;
+	}
+
+	return "admin/launchpad/item?guid={$entity->guid}";
 }
 
 /**

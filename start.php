@@ -5,7 +5,7 @@
  * @package TGSLaunchpad
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.com/
  * 
  */
@@ -43,8 +43,9 @@ function launchpad_init() {
 	// Item entity menu hook
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'launchpad_setup_entity_menu', 999);
 
-	// Add a launchpad widget
+	// Add launchpad widgets
 	elgg_register_widget_type('launchpad', elgg_echo('launchpad'), elgg_echo('launchpad:widget:description'), 'rolewidget');
+	elgg_register_widget_type('launchpad_links', elgg_get_plugin_setting('link_title', 'launchpad'), elgg_echo('launchpad:widget:description'), 'rolewidget');
 
 	// Register actions
 	$action_base = elgg_get_plugins_path() . 'launchpad/actions/launchpad';
@@ -103,7 +104,7 @@ function launchpad_page_handler($page) {
  * @return string request url
  */
 function launchpad_url($entity) {
-	return elgg_get_site_url() . 'admin/launchpad/item?guid=' . $entity->guid;
+	return elgg_get_site_url() . 'admin/launchpad_items/item?guid=' . $entity->guid;
 }
 
 /**
@@ -111,7 +112,8 @@ function launchpad_url($entity) {
  */
 function launchpad_submenus() {
 	if (elgg_in_context('admin')) {
-		elgg_register_admin_menu_item('administer', 'items', 'launchpad');
+		elgg_register_admin_menu_item('administer', 'items', 'launchpad_items');
+		elgg_register_admin_menu_item('administer', 'links', 'launchpad_items');
 	}
 }
 
@@ -121,8 +123,14 @@ function launchpad_submenus() {
 function launchpad_setup_entity_menu($hook, $type, $return, $params) {
 	$entity = $params['entity'];
 
-	if (!elgg_instanceof($entity, 'object', 'launchpad_item')) {
+	if (!elgg_instanceof($entity, 'object', 'launchpad_item') && !elgg_instanceof($entity, 'object', 'launchpad_link_item')) {
 		return $return;
+	}
+
+	if (elgg_instanceof($entity, 'object', 'launchpad_item')) {
+		$edit_action = 'edit';
+	} else {
+		$edit_action = 'edit_link';
 	}
 
 	$return = array();
@@ -130,7 +138,7 @@ function launchpad_setup_entity_menu($hook, $type, $return, $params) {
 	$options = array(
 		'name' => 'edit',
 		'text' => elgg_echo('edit'),
-		'href' => elgg_get_site_url() . 'admin/launchpad/edit?guid=' . $entity->guid,
+		'href' => elgg_get_site_url() . "admin/launchpad_items/{$edit_action}?guid=" . $entity->guid,
 		'priority' => 2,
 	);
 	$return[] = ElggMenuItem::factory($options);

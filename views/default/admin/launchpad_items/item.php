@@ -14,7 +14,7 @@ elgg_load_js('elgg.launchpad');
 
 $launchpad_item = get_entity(get_input('guid'));
 
-elgg_push_breadcrumb(elgg_echo('admin:launchpad:items'), elgg_get_site_url() . 'admin/launchpad/items');
+elgg_push_breadcrumb(elgg_echo('admin:launchpad:items'), elgg_get_site_url() . 'admin/launchpad_items/items');
 
 if (elgg_instanceof($launchpad_item, 'object', 'launchpad_item')) {
 	$content = elgg_view_entity($launchpad_item, array('full_view' => TRUE));

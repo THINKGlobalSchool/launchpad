@@ -5,7 +5,7 @@
  * @package TGSLaunchpad
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.com/
  */
 
@@ -14,7 +14,7 @@ $title = get_input('title');
 $description = get_input('description');
 $item_url = get_input('item_url');
 $item_guid = get_input('guid', NULL);
-
+$subtype = get_input('subtype', 'launchpad_item');
 
 $roles_list = get_input('roles_list');
 
@@ -30,30 +30,32 @@ if (!$title || !$item_url || !$roles_list) {
 // New Item
 if (!$item_guid) {
 	$launchpad_item = new ElggObject();
-	$launchpad_item->subtype = 'launchpad_item';
-	$launchpad_item->access_id = ACCESS_LOGGED_IN; // @TODO .. what should this be
+	$launchpad_item->subtype = $subtype;
+	$launchpad_item->access_id = ACCESS_LOGGED_IN; 
 
-	// must have a file if a new file upload
-	if (empty($_FILES['upload']['name'])) {
-		register_error(elgg_echo('launchpad:error:iconrequired'));
-		forward(REFERER);
+	if ($subtype == 'launchpad_item') {
+		// must have a file if a new file upload
+		if (empty($_FILES['upload']['name'])) {
+			register_error(elgg_echo('launchpad:error:iconrequired'));
+			forward(REFERER);
+		}
+		$icon = new LaunchpadItemIcon();
 	}
-
-	$icon = new LaunchpadItemIcon();
-
 
 } else { // Editing
 	$launchpad_item = get_entity($item_guid);
-	if (!elgg_instanceof($launchpad_item, 'object', 'launchpad_item')) {
+	if (!elgg_instanceof($launchpad_item, 'object', 'launchpad_item') && !elgg_instanceof($launchpad_item, 'object', 'launchpad_link_item')) {
 		register_error(elgg_echo('launchpad:error:edit'));
 		forward(REFERER);
 	}
 
-	$icon = new LaunchpadItemIcon($launchpad_item->icon_guid);
+	if ($subtype == 'launchpad_item') {
+		$icon = new LaunchpadItemIcon($launchpad_item->icon_guid);
 
-	if (!$icon) {
-		register_error(elgg_echo('launchpad:error:invalidicon'));
-		forward(REFERER);
+		if (!$icon) {
+			register_error(elgg_echo('launchpad:error:invalidicon'));
+			forward(REFERER);
+		}
 	}
 }
 
@@ -62,7 +64,7 @@ $launchpad_item->description = $description;
 $launchpad_item->item_url = $item_url;
 
 // we have an icon upload, so process it
-if (isset($_FILES['upload']['name']) && !empty($_FILES['upload']['name'])) {
+if ($subtype == 'launchpad_item' && isset($_FILES['upload']['name']) && !empty($_FILES['upload']['name'])) {
 
 	$prefix = "launchpad_item_icon/";
 
@@ -105,4 +107,9 @@ if (!$launchpad_item->save()) {
 elgg_clear_sticky_form('launchpad-edit-form');
 
 system_message(elgg_echo('launchpad:success:save'));
-forward(elgg_get_site_url() . 'admin/launchpad/items');
+
+if ($subtype == 'launchpad_item') {
+	forward(elgg_get_site_url() . 'admin/launchpad_items/items');
+} else {
+	forward(elgg_get_site_url() . 'admin/launchpad_items/links');
+}

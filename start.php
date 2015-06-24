@@ -39,10 +39,10 @@ function launchpad_init() {
 	elgg_register_plugin_hook_handler('entity:url', 'object', 'launchpad_url');
 
 	// Item entity menu hook
-	elgg_register_plugin_hook_handler('register', 'menu:entity', 'launchpad_setup_entity_menu', 999);
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'launchpad_setup_entity_menu', 999999);
 
 	// Add a launchpad widget
-	elgg_register_widget_type('launchpad', elgg_echo('launchpad'), elgg_echo('launchpad:widget:description'), 'rolewidget');
+	elgg_register_widget_type('launchpad', elgg_echo('launchpad'), elgg_echo('launchpad:widget:description'), array('rolewidget'));
 
 	// Register actions
 	$action_base = elgg_get_plugins_path() . 'launchpad/actions/launchpad';
